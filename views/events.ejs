@@ -1,0 +1,25 @@
+<%- include('partials/header') -%>
+
+<div class="greetings">
+  <div class="navbar">
+    <div class="container" style="text-align: center;">
+      <h5 class="card-title">Events</h5>
+      <div class="card-deck">
+        <!-- Card -->
+        <% defaultEvents.forEach((event) => { %>
+        <div class="card new-card-style">
+          <img class="card-img-top" src="..." alt="event-banner">
+          <div class="card-body">
+            <h5 class="card-title"><%= event.getTitle() %></h5>
+            <p class="card-text"><%= event.getDescription() %></p>
+          </div>
+          <div class="card-footer">
+            <small class="text-muted"><%= event.getHostName() %></small>
+          </div>
+        </div>
+        <% }) %>
+      </div>
+    </div>
+  </div>
+</div>
+<%- include('partials/footer') -%> 

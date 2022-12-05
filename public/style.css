@@ -1,0 +1,150 @@
+.socials {
+  background-color: #4285F4;
+}
+
+.socials-bottom {
+  background-color: #fff;
+}
+a {
+  color: #202124 !important;
+}
+
+a:hover {
+  color: #4285F4 !important;
+} 
+
+.email {
+  color: #fff !important;
+}
+
+.email:hover {
+  color: #fff !important;
+}
+
+.socials-email {
+  font-size: 16px;
+}
+
+.socials-email-bottom {
+  font-size: 16px;
+  color: #646C73;
+}
+
+
+.uni-name {
+  color: #202124;
+}
+
+.uni-name-footer {
+  color: #646C73;
+  font-size: 16px !important;
+}
+
+.navbar-hr {
+  border-bottom: 1px solid #DADCE0;
+}
+
+.greetings {
+  max-height: 750px !important;
+  background-position: center !important; 
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  background-color: #fff !important;
+  margin-top: 5rem !important;
+  margin-bottom: 3rem !important;
+} 
+
+.greetings-content {
+  text-decoration: none !important;
+  border-bottom: 1px solid #fff;
+  background-image: url('images/greeting-bg.png') !important;
+}
+
+.greetings-cpu-church {
+  max-width:700px;
+} 
+
+.footer {
+  border-top: 1px solid #DADCE0;
+}
+
+.footer-top {
+  background-color: #fff !important;
+  border-top: 1px solid #DADCE0;
+}
+
+.footer-quote {
+  color: #646C73 !important;
+}
+
+.footer-quote:hover {
+  color: #646C73 !important;
+}
+
+.footer-details {
+  border-top: 1px solid #DADCE0;
+}
+
+.google-blue-button {
+  background-color: #4285F4 !important;
+  border-color: #4285F4 !important;
+}
+
+.google-blue-button:hover {
+  background-color: #4285F4 !important;
+  border-color: #4285F4 !important;
+}
+
+.nav:hover {
+  --bs-nav-link-hover-color: #4285F4 !important;
+}
+
+.chapter-logo-footer {
+  max-width: 60% !important;
+  min-width: 50% !important;
+  padding: 1rem !important;
+}
+
+.temp-title {
+  text-align: center;
+}
+
+.become-a-member {
+  text-decoration: none !important;
+  color: #fff !important;
+}
+
+.become-a-member:hover {
+  text-decoration: none !important;
+  color: #fff !important;
+}
+
+.create-event-form {
+    margin: auto !important;
+    width: 50% !important;
+}
+
+.event-form {
+  margin: auto !important;
+  width: 50% !important;
+  padding: 1rem !important;
+  border: 1px solid #DADCE0;
+  border-radius: 0.375rem;
+}
+
+.form-item {
+  margin: 1rem !important;
+}
+
+.new-card-style {
+  margin: 1rem;
+  margin-left: 0px;
+}
+
+.card-text {
+  color: #5f6368 !important;
+}
+
+.grow-skills {
+  margin-bottom: 1.5rem;
+}
