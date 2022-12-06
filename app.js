@@ -83,16 +83,6 @@ app.post('/about', (req, res) => {
 
 })
 
-app.get('/teams', (req, res) => {
-  res.render('teams', {
-
-  })
-}) 
-
-app.post('/teams', (req, res) => {
-
-})
-
 app.get('/events', (req, res) => {
 
   res.render('events', {
@@ -121,14 +111,14 @@ app.post('/create-event', (req, res) => {
   res.redirect('/events');
 }) 
 
-app.get('/contacts', (req, res) => {
-  res.render('contacts', {
+app.get('/admin-login', (req, res) => {
+  res.render('admin-login', {
 
   })
-}) 
+})
 
-app.post('/contacts', (req, res) => {
-
+app.post('/admin-login', (req, res) => {
+  
 })
 
 app.listen(3000, () => {
