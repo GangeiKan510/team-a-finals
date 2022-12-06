@@ -41,7 +41,7 @@ class EventPost {
 }
 
 const event1 = new EventPost(
-  "Info Session: 2022", 
+  "Info Session: 2023", 
   "This event will serve as an introduction of the Google Developer Student Club to the students of Central Philippine University, as well as to launch actual memberships of the students to the organization.",
   "Rafael Prudente",
   null
