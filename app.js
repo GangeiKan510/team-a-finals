@@ -1,9 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-// const mysql = require('mysql');
 
-// const connection = mysql.createConnection();
 const app =  express();
+const db = require('./database');
 
 app.set('view engine', 'ejs');
 
