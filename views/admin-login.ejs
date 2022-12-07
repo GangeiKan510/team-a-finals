@@ -1,29 +1,25 @@
 <%- include('partials/header') -%> 
-<h3 class="temp-title">Admin Login</h3>
-
-<div class="create-event-form">
-  <div class="greetings" class="create-event-form">
-    <div class="navbar">
-      <div class="container event-form">
-        <form method="post" action="/create-event">
-          <div class="form-group form-item">
-            <label style="font-weight: bold;">Admin Login</label>
-            <input type="text" class="form-control" placeholder="Enter title" name="title" required>
-          </div>
-          <div class="form-group form-item">
-            <label style="font-weight: bold;">Event Lead</label>
-            <input type="text" class="form-control" placeholder="Enter name" name="name" required>
-          </div>
-          <div class="form-group form-item">
-            <label style="font-weight: bold;">Description</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" name="description" rows="3" placeholder="Enter description" required></textarea>
-          </div>
-          <label class="form-item" for="exampleFormControlFile1" style="font-weight: bold; margin-bottom: 0px !important;">Event Banner</label>
-          <input type="file" class="form-control-file form-item" style="margin-top: 0px !important;" id="exampleFormControlFile1">
-          <button type="submit" class="btn btn-primary form-item" style="margin-top: 1rem;">Submit</button>
-        </form>
+  <div class="create-event-form">
+    <div class="greetings" class="create-event-form">
+      <div class="navbar">
+        <div class="container event-form"  style="align-items: center;">
+          <form method="post" action="/create-event">
+            <div class="form-group form-item title-admin-login" style="align-items: flex-end;">
+              <h1 class="temp-title">Admin Login</h1>
+            </div>
+            <div class="form-group form-item">
+              <label>Username</label>
+              <input type="text" class="form-control" placeholder="Enter username" name="name" required>
+            </div>
+            <div class="form-group form-item">
+              <label>Password</label>
+              <input type="password" class="form-control" placeholder="Enter password" name="name" required>
+            </div>
+            <button type="submit" class="btn btn-primary form-item" style="margin-top: 1rem;">Log in</button>
+          </form>
+        </div>
       </div>
     </div>
   </div>
-</div>
-<%- include('partials/footer') -%> 
+</body>
+</html>
