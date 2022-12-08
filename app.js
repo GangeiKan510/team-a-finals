@@ -1,8 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+// const db = require('./database');
 
 const app =  express();
-const db = require('./database');
 
 app.set('view engine', 'ejs');
 
@@ -60,8 +60,14 @@ const event3 = new EventPost(
   null
 );
 
+const defaultAdmin = {
+  username: "gdscadmin",
+  password: "gdscpassword",
+}
+
 const defaultEvents = [event1, event2, event3];
 
+// Home Route
 app.get('/', (req, res) => {
   res.render('home', {
 
@@ -72,6 +78,7 @@ app.post('/', (req, res) => {
 
 })
 
+// About Route
 app.get('/about', (req, res) => {
   res.render('about', {
 
@@ -82,6 +89,7 @@ app.post('/about', (req, res) => {
 
 })
 
+// Events Route
 app.get('/events', (req, res) => {
 
   res.render('events', {
@@ -93,6 +101,7 @@ app.post('/events', (req, res) => {
 
 })
 
+// Create Event Form 
 app.get('/create-event', (req, res) => {
   res.render('create-event', {
 
@@ -104,20 +113,25 @@ app.post('/create-event', (req, res) => {
   const newEvent = new EventPost(req.body.title, req.body.name, req.body.description);
   
   defaultEvents.push(newEvent);
-  console.log(newEvent);
-  console.log(defaultEvents);
   
   res.redirect('/events');
 }) 
 
+// Admin Login Form 
 app.get('/admin-login', (req, res) => {
   res.render('admin-login', {
-
+    
   })
 })
 
 app.post('/admin-login', (req, res) => {
-  
+  const adminUsername = req.body.adminUsername;
+  const adminPassword = req.body.adminPassword;
+
+  if (adminUsername == defaultAdmin.username && adminPassword == defaultAdmin.password) {
+    res.send(`Successfully logged in! Welcome, ${defaultAdmin.username}`);
+  }
+
 })
 
 app.listen(3000, () => {

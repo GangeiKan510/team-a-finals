@@ -1,8 +1,9 @@
-const mysql = require('mysql');
+// const mysql = require('mysql2');
 
-module.exports = mysql.createConnection({
-  host: 'localhost',
-  username: 'gdsc',
-  password: 'Gdscwebsite2022!',
-  database: 'GDSCWebsite'
-});
+// exports.module = mysql.createConnection({
+//   host: 'localhost',
+//   username: 'gdsc',
+//   password: 'Gdscwebsite2022!',
+//   database: 'gdscwebsite'
+// });
+
