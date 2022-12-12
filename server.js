@@ -1,23 +1,24 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const mysql = require('mysql2');
+const cors = require('cors');
 
 const app =  express();
 
-const db = mysql.createConnection({
-  host: 'localhost',
-  username: 'root',
-  password: 'Sean69123!',
-  database: 'gdscwebsite'
-});
+let corOptions = {
+  origin: 'https://localhost:8080/'
+}
+
+app.use(cors(corOptions));
+app.use (bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(express.static(__dirname + '/client/public'));
+app.use(express.static("public"));
 
 app.set('views', 'client/views'); 
-app.use(express.static(__dirname + '/client/public'));
-
 app.set('view engine', 'ejs');
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static("public"));
+const PORT = process.env.PORT || 8080;
 
 class Event {
   title;
@@ -48,15 +49,6 @@ class Event {
     this.photoLink = photoLink;
   }
 }
-
-db.connect((err) => {
-  db.query("SELECT * FROM admin", (err, result, fields) => {
-    if (err){throw err;
-    }
-    console.log(result);
-  });
-}); 
-
 
 /* Default Events for the Events Page */
 const event1 = new Event(
@@ -92,8 +84,6 @@ app.get('/', (req, res) => {
   res.render('home', {
 
   })
-  
-  console.log(__dirname)
 })
 
 app.post('/', (req, res) => {
@@ -156,6 +146,6 @@ app.post('/admin-login', (req, res) => {
 
 })
 
-app.listen(3000, () => {
+app.listen(8080, () => {
   console.log("Server is up and running."); 
 });
