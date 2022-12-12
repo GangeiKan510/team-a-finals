@@ -54,10 +54,6 @@ app.get('/', (req, res) => {
   })
 })
 
-app.post('/', (req, res) => {
-
-})
-
 // About Route
 app.get('/about', (req, res) => {
   res.render('about', {
@@ -65,9 +61,6 @@ app.get('/about', (req, res) => {
   })
 })
 
-app.post('/about', (req, res) => {
-
-})
 
 // Events Route
 app.get('/events', (req, res) => {
@@ -76,10 +69,6 @@ app.get('/events', (req, res) => {
     defaultEvents: defaultEvents
   })
 }) 
-
-app.post('/events', (req, res) => {
-
-})
 
 // Create Event Form 
 app.get('/create-event', (req, res) => {
@@ -90,7 +79,12 @@ app.get('/create-event', (req, res) => {
 
 app.post('/create-event', (req, res) => {
 
-  const newEvent = new EventPost(req.body.title, req.body.name, req.body.description);
+  const newEvent = Event.build({
+    eventID: defaultEvents.length + 1,
+    title: req.body.title, 
+    hostName: req.body.name, 
+    description: req.body.description
+  });
   
   defaultEvents.push(newEvent);
   
