@@ -18,7 +18,7 @@
         <!-- Card -->
         <% defaultEvents.forEach((event) => { %>
         <div class="card new-card-style">
-          <img class="card-img-top" src="..." alt="event-banner">
+          <img class="card-img-top" src="<%= event.photoLink %>" alt="event-banner">
           <div class="card-body">
             <h5 class="card-title"><%= event.title %></h5>
             <p class="card-text"><%= event.description %></p>

@@ -148,3 +148,8 @@ a:hover {
 .grow-skills {
   margin-bottom: 1.5rem;
 }
+
+.card-deck {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+}
