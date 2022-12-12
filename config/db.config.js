@@ -1,4 +1,4 @@
-export default {
+const Config = {
   HOST: 'localhost',
   USER: 'gdsc',
   PASSWORD: 'Gdscwebsite2022',
@@ -11,3 +11,5 @@ export default {
   idle: 10000
   }
 };
+
+module.exports = {Config};

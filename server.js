@@ -1,4 +1,4 @@
-const Event = require('./models/Event');
+const { SuperAdmin, SubAdmin, Event } = require('./models/Models');
 
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -15,26 +15,30 @@ app.set('views', 'client/views');
 app.set('view engine', 'ejs');
 
 /* Default Events for the Events Page */
-const event1 = new Event(
-  "Info Session: 2023", 
-  "This event will serve as an introduction of the Google Developer Student Club to the students of Central Philippine University, as well as to launch actual memberships of the students to the organization.",
-  "Rafael Prudente",
-  null
-); 
 
-const event2 = new Event(
-  "Machine's Still Learning!",
-  "This workshop aims to provide the audience an opportunity to grasp the idea of Tensorflow, its practices and how to apply it in practice. ",
-  "Lyzza Flores",
-  null
-);
+const event1 = Event.build({
+  eventID: 1, 
+  title: "Info Session: 2023", 
+  description: "This event will serve as an introduction of the Google Developer Student Club to the students of Central Philippine University, as well as to launch actual memberships of the students to the organization.",
+  hostName: "Rafael Prudente",
+  photoLink: null
+}); 
 
-const event3 = new Event(
-  "CareerTrail",
-  "The event will mainly be an informative and interactive session covering the different pathways a tech graduate could take in the industry.",
-  "Dave Alivio",
-  null
-);
+const event2 = Event.build({
+  eventID: 2, 
+  title: "Machine's Still Learning!",
+  description: "This workshop aims to provide the audience an opportunity to grasp the idea of Tensorflow, its practices and how to apply it in practice. ",
+  hostName: "Lyzza Flores",
+  photoLink: null
+});
+
+const event3 = Event.build({
+  eventID: 3, 
+  title: "CareerTrail",
+  description: "The event will mainly be an informative and interactive session covering the different pathways a tech graduate could take in the industry.",
+  hostName: "Dave Alivio",
+  photoLink: null
+});
 
 const defaultAdmin = {
   username: "gdscadmin",
@@ -48,7 +52,6 @@ app.get('/', (req, res) => {
   res.render('home', {
 
   })
-  console.log(__dirname + '/client/public')
 })
 
 app.post('/', (req, res) => {
