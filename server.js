@@ -1,15 +1,25 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-// const db = require('./database');
+const mysql = require('mysql2');
 
 const app =  express();
+
+const db = mysql.createConnection({
+  host: 'localhost',
+  username: 'root',
+  password: 'Sean69123!',
+  database: 'gdscwebsite'
+});
+
+app.set('views', 'client/views'); 
+app.use(express.static(__dirname + '/client/public'));
 
 app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-class EventPost {
+class Event {
   title;
   description;
   hostName;
@@ -39,21 +49,31 @@ class EventPost {
   }
 }
 
-const event1 = new EventPost(
+db.connect((err) => {
+  db.query("SELECT * FROM admin", (err, result, fields) => {
+    if (err){throw err;
+    }
+    console.log(result);
+  });
+}); 
+
+
+/* Default Events for the Events Page */
+const event1 = new Event(
   "Info Session: 2023", 
   "This event will serve as an introduction of the Google Developer Student Club to the students of Central Philippine University, as well as to launch actual memberships of the students to the organization.",
   "Rafael Prudente",
   null
 ); 
 
-const event2 = new EventPost(
+const event2 = new Event(
   "Machine's Still Learning!",
   "This workshop aims to provide the audience an opportunity to grasp the idea of Tensorflow, its practices and how to apply it in practice. ",
   "Lyzza Flores",
   null
 );
 
-const event3 = new EventPost(
+const event3 = new Event(
   "CareerTrail",
   "The event will mainly be an informative and interactive session covering the different pathways a tech graduate could take in the industry.",
   "Dave Alivio",
@@ -72,6 +92,8 @@ app.get('/', (req, res) => {
   res.render('home', {
 
   })
+  
+  console.log(__dirname)
 })
 
 app.post('/', (req, res) => {
