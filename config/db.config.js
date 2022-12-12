@@ -1,8 +1,8 @@
 const Config = {
-  HOST: 'localhost',
-  USER: 'gdsc',
-  PASSWORD: 'Gdscwebsite2022',
-  DB: 'gdsc',
+  host: 'localhost',
+  username: 'gdsc',
+  password: 'Gdscwebsite2022',
+  database: 'gdsc',
   dialect: 'mysql', 
   pool: {
   max: 5,
