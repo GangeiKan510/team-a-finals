@@ -1,4 +1,4 @@
-class Event {
+module.exports = class Event {
   title;
   description;
   hostName;

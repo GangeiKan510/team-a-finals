@@ -1,3 +1,3 @@
-class SuperAdmin {
-  
+module.exports = class SuperAdmin {
+
 }

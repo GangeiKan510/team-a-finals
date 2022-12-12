@@ -1,14 +1,10 @@
+const Event = require('./models/Event');
+
 const express = require('express');
 const bodyParser = require('body-parser');
-const cors = require('cors');
 
 const app =  express();
 
-let corOptions = {
-  origin: 'https://localhost:8080/'
-}
-
-app.use(cors(corOptions));
 app.use (bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -17,38 +13,6 @@ app.use(express.static("public"));
 
 app.set('views', 'client/views'); 
 app.set('view engine', 'ejs');
-
-const PORT = process.env.PORT || 8080;
-
-class Event {
-  title;
-  description;
-  hostName;
-  photoLink;
-
-  constructor(title, description, hostName) {
-    this.title = title;
-    this.description = description;
-    this.hostName = hostName;
-    this.photoLink = null;
-  }
-
-  getTitle() {
-    return this.title;
-  }
-
-  getDescription() {
-    return this.description;
-  }
-
-  getHostName() {
-    return this.hostName;
-  }
-
-  setPhotoLink(photoLink) {
-    this.photoLink = photoLink;
-  }
-}
 
 /* Default Events for the Events Page */
 const event1 = new Event(
@@ -84,6 +48,7 @@ app.get('/', (req, res) => {
   res.render('home', {
 
   })
+  console.log(__dirname + '/client/public')
 })
 
 app.post('/', (req, res) => {
