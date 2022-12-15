@@ -1,7 +1,7 @@
 const Config = {
   host: 'localhost',
-  username: 'gdsc',
-  password: 'Gdscwebsite2022',
+  username: 'root',
+  password: 'Sean69123!',
   database: 'gdsc',
   dialect: 'mysql', 
   pool: {

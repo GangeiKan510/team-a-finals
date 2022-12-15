@@ -2,8 +2,8 @@ const dbconfig = require('../config/db.config');
 
 const { Sequelize, DataTypes } = require('sequelize');
 
-const sequelize = new Sequelize(dbconfig.database, dbconfig.username, dbconfig.password, {
-  host: dbconfig.host,
+const sequelize = new Sequelize('gdscwebsite', 'root', 'Sean69123!', {
+  host: '127.0.0.1',
   dialect: 'mysql'
 });
 
