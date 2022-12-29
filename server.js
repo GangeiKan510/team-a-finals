@@ -127,13 +127,126 @@ SEND GRID NEWSLETTER ROUTES
 
 // Routes
 
-app.get('/signup', (req, res) => {
+app.get('/newsletter-signup', (req, res) => {
+  res.render('newsletter-form', {
+
+  })
 });
 
-app.post('/signup', async (req, res) => {
+app.post('/newsletter-signup', async (req, res) => {
+
+  /* Helper Functions */
+  function randNum() {
+    return Math.floor(Math.random() * 90000) + 10000;
+   }
+   
+   async function addContact(firstName, lastName, email, confNum) {
+    const customFieldID = await getCustomFieldID('conf_num');
+    const data = {
+      "contacts": [{
+        "email": email,
+        "first_name": firstName,
+        "last_name": lastName,
+        "custom_fields": {}
+      }]
+    };
+    data.contacts[0].custom_fields[customFieldID] = confNum;
+    const request = {
+      url: `/v3/marketing/contacts`,
+      method: 'PUT',
+      body: data
+    }
+    return sgClient.request(request);
+   }
+   
+   async function getCustomFieldID(customFieldName) {
+    const request = {
+      url: `/v3/marketing/field_definitions`,
+      method: 'GET',
+    }
+    const response = await sgClient.request(request);
+    const allCustomFields = response[1].custom_fields;
+    return allCustomFields.find(x => x.name === customFieldName).id;
+   }
+
+  /* SendGrid Message API */
+  const confNum = randNum();
+  const params = new URLSearchParams({
+    conf_num: confNum,
+    email: req.body.email,
+  });
+  const confirmationURL = req.protocol + '://' + req.headers.host + '/confirm/?' + params;
+
+  const msg = {
+    to: req.body.email,
+    from: 'seannamo15@gmail.com', // Change to your verified sender
+    subject: `Confirm your subscription to our newsletter`,
+    html: `Hello ${req.body.firstname},<br>Thank you for subscribing to our newsletter. Please complete and confirm your subscription by <a href="${confirmationURL}"> clicking here</a>.`
+  }
+
+  await addContact(req.body.firstname, req.body.lastname, req.body.email, confNum);
+  await sgMail.send(msg);
+  res.render('newsletter-message', { message: 'Thank you for signing up for our newsletter! Please complete the process by confirming the subscription in your email inbox.' });
 });
 
 app.get('/confirm', async (req, res) => {
+  // Confirming the subscription with the confirmation link in inbox 
+  async function getContactByEmail(email) {
+    const data = {
+      "emails": [email]
+    };
+    const request = {
+      url: `/v3/marketing/contacts/search/emails`,
+      method: 'POST',
+      body: data
+    }
+    const response = await sgClient.request(request);
+    if(response[1].result[email]) return response[1].result[email].contact;
+    else return null;
+   }
+   
+   async function getListID(listName) {
+    const request = {
+      url: `/v3/marketing/lists`,
+      method: 'GET',
+    }
+    const response = await sgClient.request(request);
+    const allLists = response[1].result;
+    return allLists.find(x => x.name === listName).id;
+   }
+   
+   async function addContactToList(email, listID) {
+    const data = {
+      "list_ids": [listID],
+      "contacts": [{
+        "email": email
+      }]
+    };
+    const request = {
+      url: `/v3/marketing/contacts`,
+      method: 'PUT',
+      body: data
+    }
+    return sgClient.request(request);
+   }
+
+  try {
+    const contact = await getContactByEmail(req.query.email);
+
+    if(contact == null) throw `Contact not found.`;
+    if (contact.custom_fields.conf_num ==  req.query.conf_num) {
+      const listID = await getListID('Newsletter Subscribers');
+      await addContactToList(req.query.email, listID);
+      res.redirect('/confirm');
+    } else {
+      throw 'Confirmation number does not match';
+    }
+
+    res.render('newsletter-message', { message: 'You are now subscribed to our newsletter. We can\'t wait for you to hear from us!' });
+  } catch (error) {
+    console.error(error);
+    res.render('newsletter-message', { message: 'Subscription was unsuccessful. Please <a href="/signup">try again.</a>' });
+  }
 
 });
 

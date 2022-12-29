@@ -153,3 +153,7 @@ a:hover {
   display: grid;
   grid-template-rows: 1fr 1fr 1fr;
 }
+
+.btn-warning {
+  border-color: #0F9D58;
+}
