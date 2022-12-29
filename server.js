@@ -1,6 +1,15 @@
+require('dotenv').config();
+
 const { SuperAdmin, SubAdmin, Event } = require('./models/Models');
 
+const sgMail = require('@sendgrid/mail');
+const sgClient = require('@sendgrid/client');
+
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+sgClient.setApiKey(process.env.SENDGRID_API_KEY);
+
 const express = require('express');
+const expressFileUpload = require('express-fileupload');
 const bodyParser = require('body-parser');
 
 const app =  express();
@@ -8,8 +17,11 @@ const app =  express();
 app.use (bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+
 app.use(express.static(__dirname + '/client/public'));
 app.use(express.static("public"));
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+sgClient.setApiKey(process.env.SENDGRID_API_KEY);
 
 app.set('views', 'client/views'); 
 app.set('view engine', 'ejs');
@@ -108,6 +120,34 @@ app.post('/admin-login', (req, res) => {
   }
 
 })
+
+/*
+SEND GRID NEWSLETTER ROUTES
+*/
+
+// Routes
+
+app.get('/signup', (req, res) => {
+});
+
+app.post('/signup', async (req, res) => {
+});
+
+app.get('/confirm', async (req, res) => {
+
+});
+
+app.get('/upload', (req, res) => {
+});
+
+app.post('/upload', async (req, res) => {
+
+});
+
+app.get('/delete', async (req, res) => {
+
+});
+
 
 app.listen(8080, () => {
   console.log("Server is up and running."); 
