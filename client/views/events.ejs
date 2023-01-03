@@ -13,8 +13,19 @@
           </span>
         </div>
       </div>
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Sort by
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="#">Title</a>
+          <a class="dropdown-item" href="#">Event Head</a>
+          <a class="dropdown-item" href="#">Date (Ascending)</a>
+          <a class="dropdown-item" href="#">Date (Descending)</a>
+        </div>
+      </div>
       <h3 class="card-title">Events</h3>
-      <div class="card-deck event-items">
+      <div class="card-deck event-items" style="margin-bottom: 3rem !important;">
         <!-- Card -->
         <% defaultEvents.forEach((event) => { %>
         <div class="card new-card-style">
@@ -32,5 +43,6 @@
     </div>
   </div>
 </div>
-
-<%- include('partials/footer') -%> 
+<script src="scripts/script.js"></script>
+</body>
+</html>

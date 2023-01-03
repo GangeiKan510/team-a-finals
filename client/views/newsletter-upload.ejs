@@ -1,0 +1,28 @@
+<%- include('partials/header') %> 
+  <div class="create-event-form">
+    <div class="greetings" class="create-event-form">
+      <div class="navbar">
+        <div class="container event-form"  style="align-items: center;">
+          <div class="card-container" style="display:table; width:100%; height: 500 px; align-items: center;">
+            <form action="/upload" id="contact-form" enctype="multipart/form-data" method="post"">
+              <div class="form-group form-item title-admin-login" style="align-items: flex-end;">
+                <h1 class="temp-title">Create a Newsletter</h1>
+              </div>
+              <div class="form-group form-item">
+                <label for="subject">Email Subject:</label>
+                <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject" required>
+              </div>
+              <div class="form-group form-item">
+                <label for="newsletter">Newsletter: </label>
+                <br>
+                <input type="file" id="newsletter" name="newsletter" accept=".html" required>
+              </div>            
+              <button type="submit" class="btn btn-primary form-item" style="margin-top: 1rem;">Send</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
