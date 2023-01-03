@@ -154,9 +154,15 @@ app.post('/admin-login', (req, res) => {
   const adminPassword = req.body.adminPassword;
 
   if (adminUsername == defaultAdmin.username && adminPassword == defaultAdmin.password) {
-    res.send(`Successfully logged in! Welcome, ${defaultAdmin.username}`);
+    res.redirect('/admin-dashboard');
   }
 
+})
+
+app.get('/admin-dashboard', (req, res) => {
+  res.render('admin-dashboard', {
+
+  })
 })
 
 /*
